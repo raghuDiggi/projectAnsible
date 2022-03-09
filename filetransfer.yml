@@ -6,7 +6,7 @@
 
   - name: Clone git repository
     git: >
-      dest=/var/www/html/laravel
+      dest=/var/www/html/demo
       repo=https://github.com/raghuDiggi/projectAnsible.git
       update=yes
     become: yes
