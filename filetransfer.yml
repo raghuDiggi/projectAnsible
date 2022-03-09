@@ -7,7 +7,7 @@
   - name: Clone git repository
     git: >
       dest=/var/www/html/laravel
-      repo=https://github.com/raghuDiggi/devopsIQ.git
+      repo=https://github.com/raghuDiggi/projectAnsible.git
       update=yes
     become: yes
     register: cloned
