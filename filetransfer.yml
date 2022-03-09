@@ -1,0 +1,17 @@
+---
+- hosts: demo1
+  become: yes
+
+  tasks:
+
+  - name: Clone git repository
+    git: >
+      dest=/var/www/html/laravel
+      repo=https://github.com/raghuDiggi/devopsIQ.git
+      update=yes
+    become: yes
+    register: cloned
+
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted
