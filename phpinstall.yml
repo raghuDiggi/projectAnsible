@@ -1,0 +1,33 @@
+---
+- hosts: demo1
+  become: yes
+
+  tasks:
+
+  - name: install packages
+    apt: name={{ item }} update_cache=yes state=latest
+    with_items:
+      - git
+      - apache2
+      - php libapache2-mod-php
+      - php-cli
+      - php-curl
+      - php-mysql
+      - php-pgsql
+
+  
+  - name: create /var/www/ directory
+    file: dest=/var/www/html state=directory 
+
+  - name: Clone git repository
+    git: >
+      dest=/var/www/html/demo
+      repo=https://github.com/raghuDiggi/devopsIQ.git
+      update=yes
+    become: yes    
+    register: cloned
+
+  handlers:  
+    - name: restart apache2
+      service: name=apache2 state=restarted
+   
